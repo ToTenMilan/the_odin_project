@@ -1,0 +1,1 @@
+My main repo for all projects and assesments from The Odin Project organized in subfolders.
