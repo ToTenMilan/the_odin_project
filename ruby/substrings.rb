@@ -1,7 +1,7 @@
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
 def substrings(string, dictionary)
-  frequencies = Hash.new(0)
+  frequencies = Hash.new
   dictionary.each do |word|
     counter = string.scan(/(?=#{word})/).count
     if counter > 0; frequencies[word] = counter; end
