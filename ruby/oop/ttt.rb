@@ -1,3 +1,6 @@
+class WrongTile < Exception
+end
+
 class Tile
   attr_accessor :position, :type
   def initialize(position, type)
@@ -5,10 +8,6 @@ class Tile
     @type = type
   end
 end
-
-class WrongTile < Exception
-end
-
 
 tl = Tile.new(:tl, mark = false)
 tc = Tile.new(:tc, mark = false)
@@ -25,27 +24,19 @@ turn = 0
   turn % 2 == 0 ? mark = "x" : mark = "o"
   p "#{mark}'s turn"
   begin
-  sleep 0.7
-    puts "Player #{mark}! type one of those fields:
+  sleep 0.5
+    puts "Player #{mark}! type one of these fields:
     tl|tc|tr
     cl|cc|cr
     bl|bc|br"
     move = gets.chomp.downcase.to_sym
     raise WrongTile unless [:tl, :tc, :tr, :cl, :cc, :cr, :bl, :bc, :br].include?(move)
   rescue WrongTile
-    # if move != :tl || move != :cc
-      puts "Wrong tile name. Try again"
-      sleep 0.7
-      retry
-    # end
+    puts "Wrong tile name. Try again"
+    sleep 0.5
+    retry
   end
-  # unless move.include?(%w{tl tc tr cl cc cr bl bc br})
-      # retry
-    
-  # puts "Wrong tile name. Try again." unless move.include?(%w{tl tc tr cl cc cr bl bc br})
-  
-  #   puts "Wrong tile name. Try again."
-  
+
   case
   when move == :tl
     tl.type = mark
@@ -68,40 +59,44 @@ turn = 0
   else
     p "thats incorrect"
   end
-  puts "      |#{tl.type ||= " " }|#{tc.type ||= " " }|#{tr.type ||= " " }|
-      |#{cl.type ||= " " }|#{cc.type ||= " " }|#{cr.type ||= " " }|
-      |#{bl.type ||= " " }|#{bc.type ||= " " }|#{br.type ||= " " }|"
+
+  # draw board after player's move
+  puts "      | #{tl.type ||= " " } | #{tc.type ||= " " } | #{tr.type ||= " " } |
+      | #{cl.type ||= " " } | #{cc.type ||= " " } | #{cr.type ||= " " } |
+      | #{bl.type ||= " " } | #{bc.type ||= " " } | #{br.type ||= " " } |"
+  
+  # check win cases
   case
   when
-    (tc.type == tl.type && tc.type == tr.type) && tc.type != " "
+    (tc.type == tl.type && tc.type == tr.type) && tc.type != " " # top hor. line
     p "#{tc.type} has won!"
     exit
   when
-    (cc.type == cl.type && cc.type == cr.type) && tc.type != " "
+    (cc.type == cl.type && cc.type == cr.type) && cc.type != " " # middle hor. line
     p "#{cc.type} has won!"
     exit
   when
-    (bc.type == bl.type && bc.type == br.type) && tc.type != " "
-    p "--------- #{bc.type} has won! ----------"
+    (bc.type == bl.type && bc.type == br.type) && bc.type != " " # bottom hor. line
+    p "#{bc.type} has won!"
     exit
   when
-    (cl.type == tl.type && cl.type == bl.type) && tc.type != " "
+    (cl.type == tl.type && cl.type == bl.type) && cl.type != " " # left vert. line
     p "#{cl.type} has won!"
     exit
   when
-    (cc.type == tc.type && cc.type == bc.type) && tc.type != " "
+    (cc.type == tc.type && cc.type == bc.type) && cc.type != " " # middle vert. line
     p "#{cc.type} has won!"
     exit
   when
-    (cr.type == tr.type && cr.type == br.type) && tc.type != " "
+    (cr.type == tr.type && cr.type == br.type) && cr.type != " " # right vert. line
     p "#{cr.type} has won!"
     exit
   when
-    (cc.type == bl.type && cc.type == tr.type) && tc.type != " "
+    (cc.type == bl.type && cc.type == tr.type) && cc.type != " " # diagonal line from top left
     p "#{cc.type} has won!"
     exit
   when
-    (cc.type == tl.type && cc.type == br.type) && tc.type != " "
+    (cc.type == tl.type && cc.type == br.type) && cc.type != " " # diagonal line from bottom left
     p "#{cc.type} has won!"
     exit
   else
@@ -109,21 +104,6 @@ turn = 0
     p "Next player"
     sleep 0.5
   end
+  # change turn to other player
   turn += 1
 end
-
-# puts "|#{tl.type ||= " " }|#{tc.type ||= " " }|#{tr.type ||= " " }|
-# |#{cl.type ||= " " }|#{c.type ||= " " }|#{cr.type ||= " " }|
-# |#{bl.type ||= " " }|#{bc.type ||= " " }|#{br.type ||= " " }|"
-
-# p tl.type
-# p tl.type
-# p tl.position
-
-
-# def new_move
-#   p "your type: "
-#   type = gets.chomp.to_s
-#   p "your move: "
-#   move = gets.chomp.to_sym
-# end

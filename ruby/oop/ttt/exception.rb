@@ -1,0 +1,2 @@
+class WrongTile < Exception
+end
