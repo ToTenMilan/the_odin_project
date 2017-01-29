@@ -34,7 +34,7 @@ class Game
         # p @big_pawn_row
         # p @all_colors
         # p "---------"
-        raise WrongColor.new if (@all_colors & input).count != 4
+        raise WrongColor if (@all_colors & input).count != 4
       rescue WrongColor
         puts "Wrong color. Please pick some color listed on the board's right"
         retry
