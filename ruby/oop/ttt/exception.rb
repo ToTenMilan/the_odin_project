@@ -1,2 +1,0 @@
-class WrongTile < Exception
-end
