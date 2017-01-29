@@ -1,0 +1,3 @@
+class WrongColor
+end
+
