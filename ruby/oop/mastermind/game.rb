@@ -6,7 +6,7 @@
 require './board'
 require './big_pawns_row'
 require './small_pawn'
-require './wrong_color'
+require './input_error'
 
 class Game
   def initialize
@@ -21,24 +21,35 @@ class Game
     @board.show
     # p @board
     @board.goal = @all_colors.shuffle.first(4)
-    p "----- GOAL FOR DEBUGGING -----"
-    p @board.goal
-    p "----- GOAL FOR DEBUGGING -----"
+    
     counter = 0
-    3.times do
+    12.times do
       begin
         puts "Please pick colors that will fill the next block and separate them by space (like this C C C C): "
-        input = gets.chomp.upcase.split(" ")
+        p "----- GOAL FOR DEBUGGING -----"
+        p @board.goal
+        p "----- GOAL FOR DEBUGGING -----"
+        input = gets.chomp.upcase
         # p "---------"
         # p input
         # p @big_pawn_row
         # p @all_colors
         # p "---------"
-        raise WrongColor if (@all_colors & input).count != 4
-      rescue WrongColor
-        puts "Wrong color. Please pick some color listed on the board's right"
+        # raise WrongColorError unless (@all_colors & input).count == 4
+        
+        raise InputError unless /^[RAGYBWMO]\s[RAGYBWMO]\s[RAGYBWMO]\s[RAGYBWMO]$/ =~ input
+      rescue InputError
+        puts <<-EOB
+        
+        +-- Not a critical Error but a small mismatch ----------------------------------------+
+        | Wrong input format or wrong color picked. Example of correct input format:R B Y M.  |
+        | Available colors list is on the right from the board.                               |
+        +-------------------------------------------------------------------------------------+
+        
+        EOB
         retry
       end
+      input = input.split(" ")
       @big_pawns_row = input
       @board.fill(@big_pawns_row, counter)
       @board.show

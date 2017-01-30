@@ -1,3 +1,0 @@
-class WrongColor < StandardError
-end
-
