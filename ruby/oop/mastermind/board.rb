@@ -8,7 +8,7 @@ class Board
   
   def show
     puts <<-EOB
-    |-G-|-O-|-A-|-L-| <-is-HIDDEN  :-]-<--<):
+    |-G-|-O-|-A-|-L-| <-is-HIDDEN                               :-]-<--<):
     +---+---+---+---+              +---+---+---+---+
     | #{@slots[11][0]} | #{@slots[11][1]} | #{@slots[11][2]} | #{@slots[11][3]} | ---CHECK---> | #{@check_slots[11][0]} | #{@check_slots[11][1]} | #{@check_slots[11][2]} | #{@check_slots[11][3]} |      COLORS AVAILABLE:
     +---+---+---+---+              +---+---+---+---+
@@ -21,11 +21,11 @@ class Board
     | #{@slots[7][0]} | #{@slots[7][1]} | #{@slots[7][2]} | #{@slots[7][3]} | ---CHECK---> | #{@check_slots[7][0]} | #{@check_slots[7][1]} | #{@check_slots[7][2]} | #{@check_slots[7][3]} |      M - Magenta
     +---+---+---+---+              +---+---+---+---+      O - Orange
     | #{@slots[6][0]} | #{@slots[6][1]} | #{@slots[6][2]} | #{@slots[6][3]} | ---CHECK---> | #{@check_slots[6][0]} | #{@check_slots[6][1]} | #{@check_slots[6][2]} | #{@check_slots[6][3]} |
-    +---+---+---+---+              +---+---+---+---+
-    | #{@slots[5][0]} | #{@slots[5][1]} | #{@slots[5][2]} | #{@slots[5][3]} | ---CHECK---> | #{@check_slots[5][0]} | #{@check_slots[5][1]} | #{@check_slots[5][2]} | #{@check_slots[5][3]} |
-    +---+---+---+---+              +---+---+---+---+
-    | #{@slots[4][0]} | #{@slots[4][1]} | #{@slots[4][2]} | #{@slots[4][3]} | ---CHECK---> | #{@check_slots[4][0]} | #{@check_slots[4][1]} | #{@check_slots[4][2]} | #{@check_slots[4][3]} |
-    +---+---+---+---+              +---+---+---+---+
+    +---+---+---+---+              +---+---+---+---+      LEGEND:
+    | #{@slots[5][0]} | #{@slots[5][1]} | #{@slots[5][2]} | #{@slots[5][3]} | ---CHECK---> | #{@check_slots[5][0]} | #{@check_slots[5][1]} | #{@check_slots[5][2]} | #{@check_slots[5][3]} |      
+    +---+---+---+---+              +---+---+---+---+      X - Right pawn, at right spot
+    | #{@slots[4][0]} | #{@slots[4][1]} | #{@slots[4][2]} | #{@slots[4][3]} | ---CHECK---> | #{@check_slots[4][0]} | #{@check_slots[4][1]} | #{@check_slots[4][2]} | #{@check_slots[4][3]} |      O - Pawn is present, but spot is mismatched
+    +---+---+---+---+              +---+---+---+---+      " "(empty) - There is no such pawn in 'goal'
     | #{@slots[3][0]} | #{@slots[3][1]} | #{@slots[3][2]} | #{@slots[3][3]} | ---CHECK---> | #{@check_slots[3][0]} | #{@check_slots[3][1]} | #{@check_slots[3][2]} | #{@check_slots[3][3]} |
     +---+---+---+---+              +---+---+---+---+
     | #{@slots[2][0]} | #{@slots[2][1]} | #{@slots[2][2]} | #{@slots[2][3]} | ---CHECK---> | #{@check_slots[2][0]} | #{@check_slots[2][1]} | #{@check_slots[2][2]} | #{@check_slots[2][3]} |
@@ -34,42 +34,26 @@ class Board
     +---+---+---+---+              +---+---+---+---+
     | #{@slots[0][0]} | #{@slots[0][1]} | #{@slots[0][2]} | #{@slots[0][3]} | ---CHECK---> | #{@check_slots[0][0]} | #{@check_slots[0][1]} | #{@check_slots[0][2]} | #{@check_slots[0][3]} |
     +---+---+---+---+              +---+---+---+---+
+    
+    
     EOB
   end
   
   def fill_guess_slots(block, counter)
-    # p block
-    # p "slots before assign --------------------------------------------------------------"
-    # p @slots
+        # colorize = Proc.new do |e|
+        #   # r a g y b w m o
+        #   case
+        #   when e == "R"
+        #     e.red
+        #   when e == "A"
+        #     e.blue
+        #   end
+        # end
     @slots[counter] = block
-    # p "slots after assign --------------------------------------------------------------"
-    # p @slots
   end
   
   def fill_check_slots(block, counter)
-    # p block
-    
-    # p "check slots before assign --------------------------------------------------------------"
-    # p @check_slots
-    # p "@check_slots[counter]: "
-    # p @check_slots[counter]
-    # puts "\n\n"
     @check_slots[counter] = block
-    # p "check slots after assign --------------------------------------------------------------"
-    # p @check_slots
-    # p "@check_slots[counter]: "
-    # p @check_slots[counter]
   end
   
-  def lose
-    puts <<-EOB
-      +-----------------------------------+
-      |                                   |
-      |      YOU HAVEN'T GUESSED IT!      |
-      |                                   |
-      |      The code was \"#{goal.join(" ")}\"       |
-      |                                   |
-      +-----------------------------------+
-      EOB
-  end
 end

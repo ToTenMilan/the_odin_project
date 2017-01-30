@@ -4,17 +4,18 @@
 # Design inspired by TicTacToe game made by John Phelps ---> https://github.com/jphelps413/odin-ruby/tree/master/oop-games/tic-tac-toe
 
 require './board'
-require './big_pawns_row'
-require './small_pawn'
+require './code_pegs_row'
+require './key_pegs_row'
 require './input_error'
+require './colors'
 
 class Game
   def initialize
     @board = Board.new
-    @big_pawns_row = BigPawnsRow.new
-    @small_pawn_row = SmallPawn.new
+    @code_pegs = CodePegsRow.new
+    @key_pegs = KeyPegsRow.new
     @all_colors = ["R", "A", "G", "Y", "B", "W", "M", "O"]
-    # @small_pawn_row = ["X", "O", " "]
+    # @key_pegs = ["X", "O", " "]
   end
   
   def play
@@ -50,18 +51,19 @@ class Game
         retry
       end
       input = input.split(" ")
-      @big_pawns_row = input
-      @board.fill_guess_slots(@big_pawns_row, counter)
+      @code_pegs = input
+      @board.fill_guess_slots(@code_pegs, counter)
       @board.show
-      @small_pawn_row.check(@board.goal, @big_pawns_row)
-      # p @small_pawn_row
-      @board.fill_check_slots(@small_pawn_row.small_pawn_row, counter)
+      @key_pegs.check(@board.goal, @code_pegs)
+      # p @key_pegs
+      @board.fill_check_slots(@key_pegs.row, counter)
       @board.show
       # p @board.slots[0][counter] = @big_pawn_row
       counter += 1
+      # puts "RED THING".red
     end
     
-    @board.lose
+    @key_pegs.lose(@board.goal)
     
     # p @big_pawn.colors
     # p @small_pawn.colors

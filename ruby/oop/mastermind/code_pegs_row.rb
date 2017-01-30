@@ -1,4 +1,4 @@
-class BigPawnsRow
+class CodePegsRow
   attr_accessor :row
   # attr_reader :colors
   def initialize
