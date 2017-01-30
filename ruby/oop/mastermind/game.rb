@@ -26,9 +26,9 @@ class Game
     12.times do
       begin
         puts "Please pick colors that will fill the next block and separate them by space (like this C C C C): "
-        p "----- GOAL FOR DEBUGGING -----"
-        p @board.goal
-        p "----- GOAL FOR DEBUGGING -----"
+        # p "----- GOAL FOR DEBUGGING -----"
+        # p @board.goal
+        # p "----- GOAL FOR DEBUGGING -----"
         input = gets.chomp.upcase
         # p "---------"
         # p input
@@ -51,13 +51,17 @@ class Game
       end
       input = input.split(" ")
       @big_pawns_row = input
-      @board.fill(@big_pawns_row, counter)
+      @board.fill_guess_slots(@big_pawns_row, counter)
       @board.show
       @small_pawn_row.check(@board.goal, @big_pawns_row)
-      p @small_pawn_row
+      # p @small_pawn_row
+      @board.fill_check_slots(@small_pawn_row.small_pawn_row, counter)
+      @board.show
       # p @board.slots[0][counter] = @big_pawn_row
       counter += 1
     end
+    
+    @board.lose
     
     # p @big_pawn.colors
     # p @small_pawn.colors

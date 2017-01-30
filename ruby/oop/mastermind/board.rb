@@ -9,40 +9,67 @@ class Board
   def show
     puts <<-EOB
     |-G-|-O-|-A-|-L-| <-is-HIDDEN  :-]-<--<):
-    +---+---+---+---+              +---+---+---+
-    | #{@slots[11][0]} | #{@slots[11][1]} | #{@slots[11][2]} | #{@slots[11][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |      COLORS AVAILABLE:
-    +---+---+---+---+              +---+---+---+
-    | #{@slots[10][0]} | #{@slots[10][1]} | #{@slots[10][2]} | #{@slots[10][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |      R - Red
-    +---+---+---+---+              +---+---+---+      A - Azure
-    | #{@slots[9][0]} | #{@slots[9][1]} | #{@slots[9][2]} | #{@slots[9][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |      G - Green
-    +---+---+---+---+              +---+---+---+      Y - Yellow
-    | #{@slots[8][0]} | #{@slots[8][1]} | #{@slots[8][2]} | #{@slots[8][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |      B - Black
-    +---+---+---+---+              +---+---+---+      W - White
-    | #{@slots[7][0]} | #{@slots[7][1]} | #{@slots[7][2]} | #{@slots[7][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |      M - Magenta
-    +---+---+---+---+              +---+---+---+      O - Orange
-    | #{@slots[6][0]} | #{@slots[6][1]} | #{@slots[6][2]} | #{@slots[6][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |
-    +---+---+---+---+              +---+---+---+
-    | #{@slots[5][0]} | #{@slots[5][1]} | #{@slots[5][2]} | #{@slots[5][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |
-    +---+---+---+---+              +---+---+---+
-    | #{@slots[4][0]} | #{@slots[4][1]} | #{@slots[4][2]} | #{@slots[4][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |
-    +---+---+---+---+              +---+---+---+
-    | #{@slots[3][0]} | #{@slots[3][1]} | #{@slots[3][2]} | #{@slots[3][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |
-    +---+---+---+---+              +---+---+---+
-    | #{@slots[2][0]} | #{@slots[2][1]} | #{@slots[2][2]} | #{@slots[2][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |
-    +---+---+---+---+              +---+---+---+
-    | #{@slots[1][0]} | #{@slots[1][1]} | #{@slots[1][2]} | #{@slots[1][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |
-    +---+---+---+---+              +---+---+---+
-    | #{@slots[0][0]} | #{@slots[0][1]} | #{@slots[0][2]} | #{@slots[0][3]} | ---CHECK---> | #{} | #{} | #{} | #{} |
-    +---+---+---+---+              +---+---+---+
+    +---+---+---+---+              +---+---+---+---+
+    | #{@slots[11][0]} | #{@slots[11][1]} | #{@slots[11][2]} | #{@slots[11][3]} | ---CHECK---> | #{@check_slots[11][0]} | #{@check_slots[11][1]} | #{@check_slots[11][2]} | #{@check_slots[11][3]} |      COLORS AVAILABLE:
+    +---+---+---+---+              +---+---+---+---+
+    | #{@slots[10][0]} | #{@slots[10][1]} | #{@slots[10][2]} | #{@slots[10][3]} | ---CHECK---> | #{@check_slots[10][0]} | #{@check_slots[10][1]} | #{@check_slots[10][2]} | #{@check_slots[10][3]} |      R - Red
+    +---+---+---+---+              +---+---+---+---+      A - Azure
+    | #{@slots[9][0]} | #{@slots[9][1]} | #{@slots[9][2]} | #{@slots[9][3]} | ---CHECK---> | #{@check_slots[9][0]} | #{@check_slots[9][1]} | #{@check_slots[9][2]} | #{@check_slots[9][3]} |      G - Green
+    +---+---+---+---+              +---+---+---+---+      Y - Yellow
+    | #{@slots[8][0]} | #{@slots[8][1]} | #{@slots[8][2]} | #{@slots[8][3]} | ---CHECK---> | #{@check_slots[8][0]} | #{@check_slots[8][1]} | #{@check_slots[8][2]} | #{@check_slots[8][3]} |      B - Black
+    +---+---+---+---+              +---+---+---+---+      W - White
+    | #{@slots[7][0]} | #{@slots[7][1]} | #{@slots[7][2]} | #{@slots[7][3]} | ---CHECK---> | #{@check_slots[7][0]} | #{@check_slots[7][1]} | #{@check_slots[7][2]} | #{@check_slots[7][3]} |      M - Magenta
+    +---+---+---+---+              +---+---+---+---+      O - Orange
+    | #{@slots[6][0]} | #{@slots[6][1]} | #{@slots[6][2]} | #{@slots[6][3]} | ---CHECK---> | #{@check_slots[6][0]} | #{@check_slots[6][1]} | #{@check_slots[6][2]} | #{@check_slots[6][3]} |
+    +---+---+---+---+              +---+---+---+---+
+    | #{@slots[5][0]} | #{@slots[5][1]} | #{@slots[5][2]} | #{@slots[5][3]} | ---CHECK---> | #{@check_slots[5][0]} | #{@check_slots[5][1]} | #{@check_slots[5][2]} | #{@check_slots[5][3]} |
+    +---+---+---+---+              +---+---+---+---+
+    | #{@slots[4][0]} | #{@slots[4][1]} | #{@slots[4][2]} | #{@slots[4][3]} | ---CHECK---> | #{@check_slots[4][0]} | #{@check_slots[4][1]} | #{@check_slots[4][2]} | #{@check_slots[4][3]} |
+    +---+---+---+---+              +---+---+---+---+
+    | #{@slots[3][0]} | #{@slots[3][1]} | #{@slots[3][2]} | #{@slots[3][3]} | ---CHECK---> | #{@check_slots[3][0]} | #{@check_slots[3][1]} | #{@check_slots[3][2]} | #{@check_slots[3][3]} |
+    +---+---+---+---+              +---+---+---+---+
+    | #{@slots[2][0]} | #{@slots[2][1]} | #{@slots[2][2]} | #{@slots[2][3]} | ---CHECK---> | #{@check_slots[2][0]} | #{@check_slots[2][1]} | #{@check_slots[2][2]} | #{@check_slots[2][3]} |
+    +---+---+---+---+              +---+---+---+---+
+    | #{@slots[1][0]} | #{@slots[1][1]} | #{@slots[1][2]} | #{@slots[1][3]} | ---CHECK---> | #{@check_slots[1][0]} | #{@check_slots[1][1]} | #{@check_slots[1][2]} | #{@check_slots[1][3]} |
+    +---+---+---+---+              +---+---+---+---+
+    | #{@slots[0][0]} | #{@slots[0][1]} | #{@slots[0][2]} | #{@slots[0][3]} | ---CHECK---> | #{@check_slots[0][0]} | #{@check_slots[0][1]} | #{@check_slots[0][2]} | #{@check_slots[0][3]} |
+    +---+---+---+---+              +---+---+---+---+
     EOB
   end
   
-  def fill(block, counter)
+  def fill_guess_slots(block, counter)
     # p block
     # p "slots before assign --------------------------------------------------------------"
     # p @slots
     @slots[counter] = block
     # p "slots after assign --------------------------------------------------------------"
     # p @slots
+  end
+  
+  def fill_check_slots(block, counter)
+    # p block
+    
+    # p "check slots before assign --------------------------------------------------------------"
+    # p @check_slots
+    # p "@check_slots[counter]: "
+    # p @check_slots[counter]
+    # puts "\n\n"
+    @check_slots[counter] = block
+    # p "check slots after assign --------------------------------------------------------------"
+    # p @check_slots
+    # p "@check_slots[counter]: "
+    # p @check_slots[counter]
+  end
+  
+  def lose
+    puts <<-EOB
+      +-----------------------------------+
+      |                                   |
+      |      YOU HAVEN'T GUESSED IT!      |
+      |                                   |
+      |      The code was \"#{goal.join(" ")}\"       |
+      |                                   |
+      +-----------------------------------+
+      EOB
   end
 end
