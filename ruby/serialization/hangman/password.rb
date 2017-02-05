@@ -4,6 +4,7 @@ class Password
     @password = Array.new
     @password_checked = nil # for brevity
     @chances = 9
+    @picked_letters = Array.new
   end
   
   def filter(dictionary)
@@ -22,7 +23,7 @@ class Password
     lines = File.readlines('filtered_dictionary.txt')
     lines.each_with_index do |line, index|
       if index == random_number
-        @password = line.chomp.split('')
+        @password = line.chomp.downcase.split('')
       end
     end
     @password_checked = Array.new(@password.length, "_")
@@ -35,6 +36,8 @@ class Password
     PASSWORD: #{@password_checked[0]} #{@password_checked[1]} #{@password_checked[2]} #{@password_checked[3]} #{@password_checked[4]} #{@password_checked[5]} #{@password_checked[6]} #{@password_checked[7]} #{@password_checked[8]} #{@password_checked[9]} #{@password_checked[10]} #{@password_checked[11]}
     
     CHANCES: #{@chances}
+    
+    PICKED LETTERS: #{@picked_letters.join(" ")}
     
     EOB
   end
@@ -49,14 +52,23 @@ class Password
     unless @password.include?(input)
       @chances -= 1
     end
+    
+  end
+  
+  def add_to_picked(input)
+    @picked_letters << input
   end
   
   def game_over?
     if @password == @password_checked
-      puts "Congratulations! You found the password!"
+      puts "\nCongratulations! You found the password!\n\n"
       exit
     elsif @chances == 0
-      puts "Sorry, you are out of chances. You lost."
+      puts "\nSorry, you are out of chances. You lost.\n\n"
+      sleep 1
+      puts " :-( \n\n"
+      sleep 1
+      puts "password was: #{@password.join("")}"
       exit
     end
   end
