@@ -1,10 +1,21 @@
+require 'yaml'
+require 'json'
+require 'msgpack'
+require './basic_serializable'
+
 class Password
+  include BasicSerializable
   
+  attr_reader :password, :password_checked, :chances, :picked_letters
   def initialize
     @password = Array.new
     @password_checked = nil # for brevity
     @chances = 9
     @picked_letters = Array.new
+  end
+  
+  def password=(password)
+    @password = password
   end
   
   def filter(dictionary)
