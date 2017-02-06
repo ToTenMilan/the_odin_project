@@ -22,7 +22,8 @@ class Game
     loop do
       
       begin
-        puts "Choose next letter: "
+        puts "Type 'save' to save current game or 'load' to load previously saved game."
+        puts "Choose next letter: \n"
         input = gets.chomp.downcase
         raise InputError unless input =~ /^[A-Za-z]$/ || SAVE_OR_LOAD.include?(input)# match exactly one letter
       rescue InputError
@@ -34,63 +35,9 @@ class Game
         
         case
         when input == "save"
-          serialized_password = @password.serialize
-          puts "Please name your saved game: "
-          filename = gets.chomp.downcase
-          filename = "saved_games/" + filename + ".txt"
-          File.open(filename, "w") do |file|
-            file.puts(serialized_password)
-          end
-          
+          save_game
         when input == "load"
-          puts "Choose the game which you want to load: "
-          all_saved_games = Dir.entries('saved_games')
-          puts all_saved_games
-          game_to_load = gets.chomp.downcase
-          game_to_load = "saved_games/" + game_to_load
-          file = File.new(game_to_load, 'r')
-          serialized_object = file.gets # @password = file
-          @password.unserialize(serialized_object)
-          
-          
-          
-          # puts "------------------------serialized object: "
-          # p serialized_object #=> {\"@password\":[\"p\",\"r\",\"o\",\"f\",\"u\",\"s\",\"e\",\"l\",\"y\"],\"@password_checked\":[\"_\",\"_\",\"_\",\"_\",\"u\",\"_\",\"_\",\"_\",\"_\"],\"@chances\":8,\"@picked_letters\":[\"u\",\"a\"]}\n"
-          # puts "-------------------------------------------\n\n"
-          # puts "------------password before unserializing: "
-          # p @password
-          # p @password.class #=> Password
-          # # puts @password.password
-          # # puts @password.password_checked
-          # # puts @password.chances
-          # # puts @password.picked_letters
-          # puts "-------------------------------------------\n\n"
-          # puts "----------------------unserialized_hash: "
-          # p unserialized_hash = unserialize(serialized_object)
-          # puts "-------------------------------------------\n\n"
-          # puts "----------------------------hash_values: "
-          # p unserialized_hash["@password"]
-          # puts "-------------------------------------------\n\n"
-          # # @password.password = unserialized_hash["@password"]
-          # # @password.password_checked = unserialized_hash["@password_checked"]
-          # # @password.chances = unserialized_hash["@chances"]
-          # # @password.picked_letters = unserialized_hash["@picked_letters"]
-          # # puts "-------------------------------------------"
-          # puts "-------------password after unserializing: "
-          # p @password
-          # puts "-------------------------------------------\n\n"
-          # p @password.class #=> Array
-          
-          
-          
-          # puts @password.password
-          # puts @password.password_checked
-          # puts @password.chances
-          # puts @password.picked_letters
-          file.close
-          # unserialized_password = @password.unserialize(@password.serialize)
-          # puts "unserialized password"
-          # p @password
+          load_game
         end
         
       else
@@ -104,6 +51,31 @@ class Game
   end
   
   private
+    
+    def save_game
+      serialized_password = @password.serialize
+      puts "Please name your saved game: "
+      filename = gets.chomp.downcase
+      filename = "saved_games/" + filename + ".txt"
+      File.open(filename, "w") do |file|
+        file.puts(serialized_password)
+      end
+      @password.show
+    end
+    
+    def load_game
+      puts "\nChoose the game which you want to load: \n(type the whole name here)\n"
+      all_saved_games = Dir.entries('saved_games')
+      puts all_saved_games
+      game_to_load = gets.chomp.downcase
+      game_to_load = "saved_games/" + game_to_load
+      file = File.new(game_to_load, 'r')
+      serialized_object = file.gets # @password = file
+      @password.unserialize(serialized_object)
+      @password.show
+      file.close
+    end
+  
     def greeting
       puts <<-EOB
       
