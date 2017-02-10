@@ -20,7 +20,6 @@ def merge_sort(nums)
   
 end
 
-
 p merge_sort([2,4,6,3,5,7,1,8])
 p merge_sort([2,9,4,6,3,5,7,1,8])
 p merge_sort([4,2,6,3])
