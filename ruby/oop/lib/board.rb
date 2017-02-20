@@ -6,6 +6,15 @@ class Board
     @check_slots = Array.new(12, Array.new(4, " "))
   end
   
+  def set_goal(all_colors)
+    # all_colors.shuffle.first(4)
+    goal = []
+    4.times do |n|
+      goal[n] = all_colors[rand(8)]
+    end
+    goal
+  end
+  
   def show
     puts <<-EOB
     |-G-|-O-|-A-|-L-| <-is-HIDDEN                               :-]-<--<):

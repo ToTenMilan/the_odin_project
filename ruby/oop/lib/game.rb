@@ -3,13 +3,13 @@
 # Mastermind game by ToTenMilan
 # Design inspired by TicTacToe game made by John Phelps ---> https://github.com/jphelps413/odin-ruby/tree/master/oop-games/tic-tac-toe
 
-require './board'
-require './code_pegs_row'
-require './key_pegs_row'
-require './input_error'
-require './colors'
+require_relative 'board'
+require_relative 'code_pegs_row'
+require_relative 'key_pegs_row'
+require_relative 'input_error'
 
 class Game
+  
   def initialize
     @board = Board.new
     @code_pegs = CodePegsRow.new
@@ -21,7 +21,8 @@ class Game
   def play
     @board.show
     # p @board
-    @board.goal = @all_colors.shuffle.first(4)
+    @board.goal = @board.set_goal(@all_colors)
+    # @board.goal = @all_colors.shuffle.first(4)
     
     counter = 0
     12.times do
@@ -70,4 +71,5 @@ class Game
   end
 end
 
-Game.new.play
+############## turn off for tests | turn on to play #########
+# Game.new.play
