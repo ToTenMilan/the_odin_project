@@ -36,10 +36,6 @@ class KeyPegsRow
       temp_input.delete_at(0)
       @row << "X"
     end
-    # print "--- temp goal -------: "
-    # p temp_goal
-    # print "--------- temp input --------: "
-    # p temp_input
     # calculate guessed but not in place pawns
     pawns_not_in_place = (temp_input.count - (temp_input - temp_goal).count)
     pawns_not_in_place.times { @row << "O" }
@@ -47,6 +43,7 @@ class KeyPegsRow
     missed_pawns = temp_input.count - pawns_not_in_place
     missed_pawns.times { @row << " " }
     # p "----- small pawns row-------"
+    @row
   end
   
   def lose(goal)

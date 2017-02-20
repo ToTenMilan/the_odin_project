@@ -15,7 +15,6 @@ class Game
     @code_pegs = CodePegsRow.new
     @key_pegs = KeyPegsRow.new
     @all_colors = ["R", "A", "G", "Y", "B", "W", "M", "O"]
-    # @key_pegs = ["X", "O", " "]
   end
   
   def play
