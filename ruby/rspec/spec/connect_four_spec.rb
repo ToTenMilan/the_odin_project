@@ -38,49 +38,58 @@ end
 describe "Board" do
   # y - yellow coin
   # r - red coin
-  # 'player_one' overwritten temporarily with his coin value
   let(:player_one) { "y" }
-  # 'player_two' overwritten temporarily with his coin value
   let(:player_two) { "r" }
               # let(:board) { Board.new(Array.new(7, Array.new(6, " "))) }
+  before(:all) do
+    @board_state = [ [" ", " ", " ", " ", " ", " ", " "],
+                      [" ", " ", " ", " ", " ", " ", " "],
+                      [" ", " ", " ", " ", " ", " ", " "],
+                      [" ", " ", " ", " ", " ", " ", " "],
+                      [" ", " ", " ", " ", " ", " ", " "],
+                      [" ", " ", " ", " ", " ", " ", " "],
+                      [" ", " ", " ", " ", " ", " ", " "] ]
+  end
   before(:each) do
     @board = Board.new(Array.new(7, Array.new(6, " ")))
-    @first_board_state = [ ["y", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "] ]
-    @second_board_state = [ ["y", "r", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "] ]
-    @third_board_state = [ ["y", "r", "r", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "],
-                            [" ", " ", " ", " ", " ", " ", " "] ]
+    @first_board_state = [ ["y", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "] ]
+    @second_board_state = [ ["y", "r", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " "] ]
+    @third_board_state = [ ["y", "r", "r", " ", " ", " "],
+                            [" ", " ", " ", " ", " ", " ",],
+                            [" ", " ", " ", " ", " ", " ",],
+                            [" ", " ", " ", " ", " ", " ",],
+                            [" ", " ", " ", " ", " ", " ",],
+                            [" ", " ", " ", " ", " ", " ",],
+                            [" ", " ", " ", " ", " ", " ",] ]
   end
   let(:input) { @board[0] }
   # need to compare the result of 'move' to not empty row of the board
   context "#drop_coin" do
-    it "drops coin to first row with no coins" do
+    it "drops three coins to single row, one yellow than two red" do
       allow(@board).to receive(:move)
       expect(@board.move(player_one, input)).to eq @first_board_state
-    end
-    it "drops coin to first row with one coin of other player in it" do
-      allow(@board).to receive(:move)
-      expect(@board.move(player_two, input)).to eq @second_board_state
-    end
-    it "drops coin to first row with other player's coin at first place and own coin at second place" do
-      allow(@board).to receive(:move)
+      @board[0][0] = "y"
+      expect(@board.move(player_one, input)).to eq @second_board_state
+      @board[0][1] = "r"
       expect(@board.move(player_two, input)).to eq @third_board_state
+      @board[0][2] = "r"
     end
+    # it "return input error if seventh coin is dropped to single row" do
+    #   allow(@board).to receive(:move)
+      
+    # end
   end
 end
+

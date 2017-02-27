@@ -1,3 +1,3 @@
-# class Board
+class Board
   
-# end
+end

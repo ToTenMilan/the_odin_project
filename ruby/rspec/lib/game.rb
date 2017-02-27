@@ -1,6 +1,6 @@
 require_relative 'board'
 require_relative 'player'
 
-# class Game
+class Game
   
-# end
+end
