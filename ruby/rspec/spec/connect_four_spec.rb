@@ -53,12 +53,12 @@ describe Game do
 end
 
 describe Board do
-  # y - yellow coin
-  # r - red coin
+  # ○ - yellow coin
+  # ● - red coin
   subject(:player_one) { Player.new(color_one) }
   subject(:player_two) { Player.new(color_two) }
-  let(:color_one) { "y" }
-  let(:color_two) { "r" }
+  let(:color_one) { "○" }
+  let(:color_two) { "●" }
   let(:input) { 1 }
   
   before(:all) do
@@ -88,52 +88,54 @@ describe Board do
     # it { is_expected.to respond_to(:show) }
   end
   
+  before(:each) do
+    @board = Board.new
+  end
   context "#won?" do
     # before do
     #   @board.board[0][3], @board.board[0][4] = "r", "r"
     # end
-    it "return true if player has connected 4 coins vertical" do
-      @board.board[0][1] = 'r'
-      @board.board[0][2] = 'r'
-      @board.board[0][3] = 'r'
-      @board.board[0][4] = 'r'
-      expect(@board.won?("r")).to be true
-    end
     it "return true if player has connected 4 coins horizontal" do
-      @board.board[1][0] = 'y'
-      @board.board[2][0] = 'y'
-      @board.board[3][0] = 'y'
-      @board.board[4][0] = 'y'
-      expect(@board.won?("y")).to be true
+      @board.board[0][0] = '●'
+      @board.board[0][1] = '●'
+      @board.board[0][2] = '●'
+      @board.board[0][3] = '●'
+      expect(@board.won?("●")).to be true
+    end
+    it "return true if player has connected 4 coins vertical" do
+      @board.board[1][0] = '○'
+      @board.board[2][0] = '○'
+      @board.board[3][0] = '○'
+      @board.board[4][0] = '○'
+      expect(@board.won?("○")).to be true
     end
     it "return true if player has connected 4 coins diagonal slope down" do
-      @board.board[1][1] = 'r'
-      @board.board[2][2] = 'r'
-      @board.board[3][3] = 'r'
-      @board.board[4][4] = 'r'
-      expect(@board.won?("r")).to be true
+      @board.board[2][3] = '●'
+      @board.board[3][2] = '●'
+      @board.board[4][1] = '●'
+      @board.board[5][0] = '●'
+      expect(@board.won?("●")).to be true
     end
     it "return true if player has connected 4 coins diagonal slope up" do
-      @board.board[1][4] = 'y'
-      @board.board[2][3] = 'y'
-      @board.board[3][2] = 'y'
-      @board.board[4][1] = 'y'
-      expect(@board.won?("y")).to be true
+      @board.board[2][2] = '○'
+      @board.board[3][3] = '○'
+      @board.board[4][4] = '○'
+      @board.board[5][5] = '○'
+      expect(@board.won?("○")).to be true
     end
   end
-  p @board
 end
 
 describe Player do
   subject(:player_one) { Player.new(color_one) }
   subject(:player_two) { Player.new(color_two) }
-  let(:color_one) { "y" }
-  let(:color_two) { "r" }
+  let(:color_one) { "○" }
+  let(:color_two) { "●" }
   
   context "#color" do
-    # before { player.color = "r" }
+    # before { player.color = "●" }
     it "returns color of the player" do
-      expect(player_two.color).to eq "r"
+      expect(player_two.color).to eq "●"
     end
   end
   
