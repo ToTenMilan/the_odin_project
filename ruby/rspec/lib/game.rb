@@ -13,7 +13,7 @@ class Game
   
   def play
     player_color = @players[0].color
-    42.times do # max 42 turns
+    loop do # max 42 turns
       @board.show
       begin
         puts "#{player_color} turn. Select row from 1 to 7 to drop your coin"
@@ -24,7 +24,12 @@ class Game
         puts "Input Error. Type only a number from range 1 to 7"
         retry
       end
-      @board.drop_coin(input, player_color)
+        
+      if @board.drop_coin(input, player_color).nil?
+        puts "Input Error. No room in this column. Choose another one."
+        next
+      end
+      
       @board.game_over(player_color) if @board.won?(player_color) == true
       player_color == "○" ? player_color = "●" : player_color = "○"
     end
@@ -32,9 +37,5 @@ class Game
   
 end
 
-# yet need to create the change player function
 Game.new.play
-# game = Game.new
-# p game.board
-# p game.players
 
