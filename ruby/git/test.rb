@@ -5,5 +5,3 @@ end
 def major_change
   p "supermethod"
 end
-
-p "Pomidor"
