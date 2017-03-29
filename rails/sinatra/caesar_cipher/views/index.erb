@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Caesar Cipher in Sinatra</title>
+  </head>
+  <body>
+  <h2>Cipher your message!</h2>
+  <form action="/" method="post">
+    Your message:<input type="text" name="message"><br><br>
+    your key:<input type="number" name="key"><br><br>
+    <input type="submit" value="Cipher it!">
+  </form>
+  <% unless output.nil? %>
+    <p>Your ciphered message is:<br><%= output %></p>
+  <% end %>
+  </body>
+</html>
+
+<!--<div class="my_content_container">
+      <a href="/message">Click here to Cipher this</a>
+  </div>
