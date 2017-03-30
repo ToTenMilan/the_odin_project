@@ -1,7 +1,7 @@
 require 'sinatra'
-if development?
-  require 'sinatra/reloader'
-end
+# if development?
+#   require 'sinatra/reloader'
+# end
 
 get '/' do
   "helo"
