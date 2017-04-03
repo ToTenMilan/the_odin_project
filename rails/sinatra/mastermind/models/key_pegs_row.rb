@@ -5,12 +5,12 @@ class KeyPegsRow
     # @colors = ["X", "O", " "] # X - on place, O - present, not in place, " " - not present
   end
 
-  def check(goal, input)
+  def won?(goal, input)
     # temp arrays for calculating key pegs
     temp_goal = Array.new(goal)
     temp_input = Array.new(input)
     if input == goal
-      won?(goal)
+      return true
     end
 
     @row = []
@@ -44,6 +44,7 @@ class KeyPegsRow
     missed_pawns.times { @row << " " }
     # p "----- small pawns row-------"
     @row
+    false
   end
 
   def lose?(goal)
@@ -52,7 +53,7 @@ class KeyPegsRow
 
   private
 
-    def won?(goal)
-      true
-    end
+    # def won
+    #   return true
+    # end
 end

@@ -1,26 +1,32 @@
 <html>
   <head>
     <title>Mastermind in Sinatra</title>
+    <link rel="stylesheet" href="../public/stylesheet.css">
   </head>
   <body>
   <h2>MASTERMIND</h2>
 
-  <form action="/" method="post">
-    Your input (hint: in the following format "C C C C"):
-    <input type="text" name="input"><br><br>
-    <input type="submit" value="submit these pegs">
-  </form>
+  <% if message.nil? %>
+    <form action="/" method="post">
+      Your input (hint: in the following format "C C C C"):
+      <input type="text" name="input"><br><br>
+      <input type="submit" value="submit these pegs">
+    </form>
+  <% end %>
+
+  <% unless message.nil? %>
+    <%= message %>
+  <% end %>
 
   <form action="/" method='GET'>
     <input type="submit" value="New Game">
   </form>
 
   <h1><%= goal %></h1>
-  <% unless input.nil? %>
 
-  input: <%= input %>
+  <% unless input.nil? %>
     <div>
-      <span>
+      <span class="board">
         <% slots.each do |row| %>
           <table>
             <tr>
@@ -29,7 +35,7 @@
           </table>
         <% end %>
       </span>
-      <span>
+      <span class="board">
         <% check_slots.each do |row| %>
           <table>
             <tr>

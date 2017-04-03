@@ -21,10 +21,19 @@ class Game
   def move(input)
     @code_pegs = input.split(" ")
     @board.fill_guess_slots(@code_pegs, @@turn_counter)
-    @key_pegs.check(@board.goal, @code_pegs)
+    # @key_pegs.check(@board.goal, @code_pegs)
+
+    if @key_pegs.won?(@board.goal, @code_pegs) == true
+      return true
+    end
     @board.fill_check_slots(@key_pegs.row, @@turn_counter)
     @@turn_counter += 1
   end
+
+  # def won?
+  #   @board.fill_check_slots(@key_pegs.row, @@turn_counter)
+  #   @key_pegs.check(@board.goal, @code_pegs)
+  # end
 
   # def play(input)
   #   @board.goal = @board.set_goal(@all_colors)
