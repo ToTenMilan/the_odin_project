@@ -1,0 +1,6 @@
+.board {
+  display: inline;
+  width: 40%;
+  margin: auto;
+  border: 3px black;
+}
