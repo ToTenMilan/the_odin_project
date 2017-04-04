@@ -1,7 +1,40 @@
 <html>
   <head>
     <title>Mastermind in Sinatra</title>
-    <link rel="stylesheet" href="../styles.css">
+    <!-- <link rel="stylesheet" href="../styles.css" type="text/css"> -->
+    <style>
+      span {
+        display: inline;
+        width: 40%;
+        margin: auto;
+        border: 3px black;
+      }
+      body {
+        background: beige;
+        font-family: arial;
+      }
+      .guess_column {
+        float: left;
+        position: center;
+      }
+      .check_column {
+        float: right;
+        position: center;
+      }
+      #error {
+        color: #ff6666;
+      }
+      .link {
+        text-decoration: none;
+        font-weight: 600;
+      }
+      footer {
+          clear: both;
+          position: relative;
+          z-index: 10;
+          height: 3em;
+      }
+    </style>
   </head>
 
   <body>
@@ -29,7 +62,7 @@
     <input type="submit" value="New Game">
   </form>
 
-  <h1><%= goal %></h1>
+  <!-- <h1><%= goal %></h1> -->
 
   <% unless input.nil? %>
     <div>

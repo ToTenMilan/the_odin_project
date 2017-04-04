@@ -6,7 +6,6 @@
 require_relative 'board'
 require_relative 'code_pegs_row'
 require_relative 'key_pegs_row'
-require_relative 'input_error'
 
 class Game
   attr_accessor :board, :code_pegs, :key_pegs
@@ -21,7 +20,6 @@ class Game
   def move(input)
     @code_pegs = input.split(" ")
     @board.fill_guess_slots(@code_pegs, @@turn_counter)
-    # @key_pegs.check(@board.goal, @code_pegs)
 
     if @key_pegs.won?(@board.goal, @code_pegs) == true
       return true
@@ -30,16 +28,6 @@ class Game
     @@turn_counter += 1
   end
 
-  # def won?
-  #   @board.fill_check_slots(@key_pegs.row, @@turn_counter)
-  #   @key_pegs.check(@board.goal, @code_pegs)
-  # end
-
-  # def play(input)
-  #   @board.goal = @board.set_goal(@all_colors)
-
-  #   # @key_pegs.lose(@board.goal)
-  # end
 end
 
 ############## turn off for tests | turn on to play #########

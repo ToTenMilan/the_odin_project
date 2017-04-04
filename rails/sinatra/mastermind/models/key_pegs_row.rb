@@ -42,18 +42,8 @@ class KeyPegsRow
     # calculate missed pawns
     missed_pawns = temp_input.count - pawns_not_in_place
     missed_pawns.times { @row << " " }
-    # p "----- small pawns row-------"
+
     @row
     false
   end
-
-  def lose?(goal)
-    true
-  end
-
-  private
-
-    # def won
-    #   return true
-    # end
 end
