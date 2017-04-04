@@ -24,13 +24,16 @@
         color: #ff6666;      }
     </style>
   </head>
+
   <body>
   <h2>MASTERMIND</h2>
+
   <p id="error">
     <% unless error.nil? %>
       <%= error %>
     <% end %>
   </p>
+
   <% if message.nil? %>
     <form action="/" method="post">
       Your input (hint: in the following format "C C C C"):
@@ -38,6 +41,8 @@
       <input type="submit" value="submit these pegs">
     </form>
   <% end %>
+
+  <%= counter %>
 
   <% unless message.nil? %>
     <%= message %>

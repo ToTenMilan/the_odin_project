@@ -14,6 +14,8 @@ get '/' do
   input = nil
   message = nil
   error = nil
+  session[:counter] = 1
+  counter = session[:counter]
   session[:game] = Game.new
   game = session[:game]
   session[:goal] = game.board.set_goal
@@ -21,7 +23,7 @@ get '/' do
   unless input.nil?
     slots = game.board.slots
   end
-  erb :index, locals: {input: input, slots: slots, goal: goal, message: message, error: error}
+  erb :index, locals: {input: input, slots: slots, goal: goal, message: message, error: error, counter: counter}
 end
 
 post '/' do
@@ -30,28 +32,27 @@ post '/' do
   input = params[:input].upcase
   error = nil
   message = nil
-  # slots = nil
-  # check_slots = nil
+  counter = session[:counter]
 
   unless /^[RAGYBWMO]\s[RAGYBWMO]\s[RAGYBWMO]\s[RAGYBWMO]$/ =~ input
     error = "Wrong input format. Format your input according to hint below."
   else
-    # game.move(input)
-
+    session[:counter] += 1
     if game.move(input) == true
       message = "YOU WON. Press New Game button to hunt some more unicorns"
+    elsif counter >= 12
+      message = "YOU LOST. 12 turns reached. Press New Game button to try to hunt some unicorn"
     else
       message = nil
     end
-    #
+
     # if game.key_pegs.check(goal, input) == true
     #   message = "YOU WON. Next Game is started"
     #   redirect '/'
     # end
-
   end
   slots = game.board.slots
   check_slots = game.board.check_slots
 
-  erb :index, locals: {input: input, slots: slots, check_slots: check_slots, goal: goal, message: message, error: error}
+  erb :index, locals: {input: input, slots: slots, check_slots: check_slots, goal: goal, message: message, error: error, counter: counter}
 end
