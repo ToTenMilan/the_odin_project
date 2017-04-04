@@ -1,11 +1,36 @@
 <html>
   <head>
     <title>Mastermind in Sinatra</title>
-    <link rel="stylesheet" href="../public/stylesheet.css">
+    <!-- <link rel="stylesheet" href="/../public/stylesheet.css"> -->
+    <style>
+      span {
+        display: inline;
+        width: 40%;
+        margin: auto;
+        border: 3px black;
+      }
+      body {
+        background: beige;
+      }
+      .guess_column {
+        float: left;
+        position: center;
+      }
+      .check_column {
+        float: right;
+        position: center;
+      }
+      #error {
+        color: #ff6666;      }
+    </style>
   </head>
   <body>
   <h2>MASTERMIND</h2>
-
+  <p id="error">
+    <% unless error.nil? %>
+      <%= error %>
+    <% end %>
+  </p>
   <% if message.nil? %>
     <form action="/" method="post">
       Your input (hint: in the following format "C C C C"):
@@ -26,22 +51,22 @@
 
   <% unless input.nil? %>
     <div>
-      <span class="board">
+      <span class="guess_column">
+      <p>Your guesses:</p>
         <% slots.each do |row| %>
-          <table>
-            <tr>
+            <p><%= row %></p>
+            <!-- <tr>
               <td><%= row %></td>
-            </tr>
-          </table>
+            </tr> -->
         <% end %>
       </span>
-      <span class="board">
+      <span class="check_column">
+      <p>Check slots:</p>
         <% check_slots.each do |row| %>
-          <table>
-            <tr>
+            <p><%= row %></p>
+            <!-- <tr>
               <td><%= row %></td>
-            </tr>
-          </table>
+            </tr> -->
         <% end %>
       </span>
     </div>
