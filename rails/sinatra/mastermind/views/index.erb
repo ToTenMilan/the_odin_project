@@ -11,6 +11,7 @@
       }
       body {
         background: beige;
+        font-family: arial;
       }
       .guess_column {
         float: left;
@@ -21,7 +22,19 @@
         position: center;
       }
       #error {
-        color: #ff6666;      }
+        color: #ff6666;
+      }
+      .link {
+        text-decoration: none;
+        font-weight: 600;
+      }
+      footer {
+          clear: both;
+          position: relative;
+          z-index: 10;
+          height: 3em;
+          /*margin-top: -3em;*/
+      }
     </style>
   </head>
 
@@ -47,6 +60,8 @@
   <% unless message.nil? %>
     <%= message %>
   <% end %>
+
+
 
   <form action="/" method='GET'>
     <input type="submit" value="New Game">
@@ -77,5 +92,8 @@
     </div>
   <% end %>
 
+  <footer>
+    <a href="/rules" class="link" target="_blank">Rules</a>
+  </footer>
   </body>
 </html>

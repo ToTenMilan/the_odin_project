@@ -56,3 +56,7 @@ post '/' do
 
   erb :index, locals: {input: input, slots: slots, check_slots: check_slots, goal: goal, message: message, error: error, counter: counter}
 end
+
+get '/rules' do
+  erb :rules
+end
