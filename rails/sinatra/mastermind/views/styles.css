@@ -1,0 +1,31 @@
+span {
+  display: inline;
+  width: 40%;
+  margin: auto;
+  border: 3px black;
+}
+body {
+  background: blue;
+  font-family: arial;
+}
+.guess_column {
+  float: left;
+  position: center;
+}
+.check_column {
+  float: right;
+  position: center;
+}
+#error {
+  color: #ff6666;
+}
+.link {
+  text-decoration: none;
+  font-weight: 600;
+}
+footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+}
