@@ -1,0 +1,17 @@
+<p>This is the new</p>
+
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit "lubie placki" %>
+<% end %>
