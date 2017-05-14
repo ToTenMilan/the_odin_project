@@ -5,6 +5,12 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    # cookies[:hello] = "I am a cookie"
+    cookies[:delete] = { value: "You shall not pass!", expires: Time.now + 3600}
+    cookies.delete(:hello)
+
+    session[:foobar] = "I will persist thw whole session"
+
   end
 
   # GET /users/1
