@@ -46,3 +46,5 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@user), count: 0
   end
 end
+
+# ch. 9 ...any potentially sensitive information we place on the browser.
