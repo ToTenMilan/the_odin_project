@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+    <title>calc</title>
+  </head>
+  <body>
+    <div id="calc">
+      <div id="prompt">
+        
+      </div>
+      <div class="row">
+        <div id="7" class="button" onclick="input(this)">7</div>
+        <div id="8" class="button" onclick="input(this)">8</div>
+        <div id="9" class="button" onclick="input(this)">9</div>
+        <div id="add" class="button" onclick="operation(this)">+</div>
+      </div>
+      <div class="row">
+        <div id="4" class="button" onclick="input(this)">4</div>
+        <div id="5" class="button" onclick="input(this)">5</div>
+        <div id="6" class="button" onclick="input(this)">6</div>
+        <div id="subtract" class="button" onclick="operation(this)">-</div>
+      </div>
+      <div class="row">
+        <div id="1" class="button" onclick="input(this)">1</div>
+        <div id="2" class="button" onclick="input(this)">2</div>
+        <div id="3" class="button" onclick="input(this)">3</div>
+        <div id="multiply" class="button" onclick="operation(this)">*</div>
+      </div>
+      <div class="row">
+        <div id="0" class="button" onclick="input(this)">0</div>
+        <div id="clear" class="button" onclick="operation(this)" >C</div>
+        <div id="equal" class="button" onclick="operation(this)">=</div>
+        <div id="divide" class="button" onclick="operation(this)">/</div>
+      </div>
+    </div>
+    
+    
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="calculator.js"></script>
+  </body>
+</html>
+
