@@ -1,0 +1,16 @@
+<h1>Kittens#index</h1>
+<p>Find me in app/views/kittens/index.html.erb</p>
+<span>name </span>
+<span>age </span>
+<span>cuteness </span>
+<span>softness</span>
+<br />
+<% @kittens.each do |kitten| %>
+  <span><%= kitten.name %></span>
+  <span><%= kitten.age %></span>
+  <span><%= kitten.cuteness %></span>
+  <span><%= kitten.softness %></span>
+  <span><%= link_to "Hide kitty", kitten, method: :delete, data: { confirm: "Look at his eyes, and ask yourself that once again"} %></span>
+  <br />
+
+<% end %>
