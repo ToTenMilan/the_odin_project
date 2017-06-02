@@ -4,13 +4,24 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    # render nothing: true, status: 404
+
     @users = User.all
-    # cookies[:hello] = "I am a cookie"
-    cookies[:delete] = { value: "You shall not pass!", expires: Time.now + 3600}
-    cookies.delete(:hello)
+    # render :json => User.all
+    # respond_to do |format|
+    #   format.html { render html: @users }
+    #   format.json { render json: @users }
+    #   format.xml { render xml: @users }
+    # end
 
-    session[:foobar] = "I will persist thw whole session"
 
+    # #   ########### testing cookies and sessions #################
+    #   # @users = User.all
+    #   # # cookies[:hello] = "I am a cookie"
+    #   # cookies[:delete] = { value: "You shall not pass!", expires: Time.now + 3600}
+    #   # cookies.delete(:hello)
+    #   # session[:foobar] = "I will persist thw whole session"
+    #
   end
 
   # GET /users/1
