@@ -20,6 +20,7 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id) # find raises exception(if no record found) so find_by need to be used, which returns nil
     # if not check whether cookies are present
     elsif (user_id = cookies.signed[:user_id])
+      # raise # to check if this path of code is covered
       user = User.find_by(id: user_id)
       # if user is trueish and remember_token matches (with that from db?)
       if user && user.authenticated?(cookies[:remember_token])
@@ -34,7 +35,16 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  # Forgets a persistent session.
+  def forget(user)
+    user.forget # defined in user (model_name.class_method)
+    cookies.delete(:user_id)
+    cookies.delete(:remember_token)
+  end
+
+  # Logs out the current user.
   def log_out
+    forget(current_user) # forget defined above
     session.delete(:user_id)
     @current_user = nil
   end
