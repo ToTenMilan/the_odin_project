@@ -183,3 +183,14 @@ footer {
   margin-top: 15px;
   @include box_sizing;
 }
+
+/* users index */
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}

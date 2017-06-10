@@ -1,0 +1,17 @@
+<!-- passing variables -->
+<%= provide :title, 'Edit' %>
+<%= provide :button_text, 'Save changes' %>
+<%= provide :url, user_path %> <!-- exercise 10.1.1.2 -->
+
+<h1>Update your profile</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <!-- url: signup_path added for excluded from resources :users, the post('/signup', to: users#create) -->
+  <%= render 'form' %>
+
+    <div class="gravatar_edit">
+      <%= gravatar_for @user %>
+      <a href="http://gravatar.com/emails" target="_blank" rel="noopener">Change</a>
+    </div>
+  </div>
+</div>
