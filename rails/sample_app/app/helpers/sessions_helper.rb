@@ -27,7 +27,7 @@ module SessionsHelper
       # raise # to check if this path of code is covered
       user = User.find_by(id: user_id)
       # if user is trueish and remember_token matches (with that from db?)
-      if user && user.authenticated?(cookies[:remember_token])
+      if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end
