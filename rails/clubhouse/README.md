@@ -1,24 +1,12 @@
-# README
+# Clubhouse app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### [The Odin Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/authentication?ref=lc-pb) exercise
 
-Things you may want to cover:
+###### In short:
+- App which lets users write embarrasing posts about other users but only special members can view the author of the post, and the rest needs to wonder
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###### It applies:
+- login/logout funcionality built from the ground up
+- password remembering
+- writing posts by the users
+- authorization of special members feature
