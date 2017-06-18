@@ -1,0 +1,5 @@
+<h1>Home</h1>
+
+<%= current_user.name if logged_in? %>
+<%= link_to 'Login', login_path %>
+<%= link_to 'Logout', logout_path, method: :delete %>
