@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+$font-color: #cfcfcf;
+$border-color: #3e3e3e;
+$background-color: #4a9b35;
+
 /* misscellaneous*/
 .debug_dump {
   clear: both;
@@ -15,4 +19,39 @@
   width: 100%;
   margin-top: 15px;
   @include box_sizing;
+}
+
+/* logo */
+
+#logo {
+  font-weight: 900;
+  font-size: 22px;
+  text-decoration: none;
+  color: $font-color;
+  background: $background-color;
+  // padding: 1px;
+  margin: 3px;
+  border: 1px $border-color solid;
+  border-radius: 5px;
+  position: fixed;
+}
+
+/* post */
+
+.author-field {
+  color: $font-color;
+  font-weight: 600;
+  background: $background-color;
+  padding: 2px;
+}
+
+.body-field {
+  padding: 2px;
+}
+
+.post {
+  padding: 5px;
+  margin: 3px;
+  border: 1px $border-color solid;
+  border-radius: 5px;
 }

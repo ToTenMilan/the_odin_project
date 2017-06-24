@@ -1,0 +1,16 @@
+<div class="container">
+  <nav>
+  <%= link_to 'CLUBHOUSE', root_url, id: "logo" %>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to 'New post', new_post_path %></li>
+      <li><%= link_to 'All posts', posts_path %></li>
+      <li>
+        <% if logged_in? %>
+          <%= link_to 'Logout', logout_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Login', login_path %>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+</div>

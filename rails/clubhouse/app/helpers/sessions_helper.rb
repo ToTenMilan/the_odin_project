@@ -1,24 +1,18 @@
 module SessionsHelper
+  attr_writer :current_user
 
   def log_in(user)
-    # user.remember_token = self.create_token
-    user.remember_user
-    cookies.permanent[:remember_token] = user.remember_token
-    # debugger
-    self.current_user = user
+    session[:user_id] = user.id
+    @current_user = user
   end
 
   def current_user
-    @current_user ||= User.find_by(remember_digest: User.digest(cookies[:remember_token]))
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
-  # def current_user=(user)
-  #   @current_user = user
-  # end
-  #
   def sign_out
+    session.delete(:user_id)
     @current_user = nil
-    cookies.delete(:remember_token)
     flash[:info] = "You have been logged out"
   end
 

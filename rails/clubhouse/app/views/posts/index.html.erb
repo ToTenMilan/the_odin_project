@@ -1,0 +1,17 @@
+<div class="container">
+  <% @posts.each do |p| %>
+    <div class="container-fluid">
+      <div class="row post">
+
+        <div class="author-field">
+          <%= logged_in? ? p.title : "Log in to see the author" %>
+        </div>
+
+        <div class="body-field">
+          <%= p.body %>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>

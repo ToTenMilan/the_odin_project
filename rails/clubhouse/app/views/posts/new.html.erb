@@ -1,0 +1,14 @@
+<div class="container">
+  <%= form_for @post, class: 'form-group' do |f| %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+
+    <%= f.label :body %>
+    <%= f.text_area :body, class: 'form-control' %>
+
+    <%= f.submit "Create post", class: 'btn btn-primary' %>
+
+  <% end %>
+</div>
+
