@@ -21,7 +21,10 @@ module SessionsHelper
   def current_user
     # first check if user has still opened browser(session)
     if (user_id = session[:user_id])
+      # debugger
       @current_user ||= User.find_by(id: user_id) # find raises exception(if no record found) so find_by need to be used, which returns nil
+      puts "method: current_user"
+      p @current_user
     # if not check whether cookies are present
     elsif (user_id = cookies.signed[:user_id])
       # raise # to check if this path of code is covered

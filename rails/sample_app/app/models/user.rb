@@ -65,6 +65,18 @@ class User < ApplicationRecord
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+    # i.e
+    # reset_sent_at == 15:00
+    # Time.now == 16:00
+    # 2.hours.ago => max 14:00
+    # 15:00 > 14:00
+    # returns false (not expired)
+    #
+    # reset_sent_at == 15:00
+    # Time.now == 18:00
+    # 2.hours.ago => max 16:00
+    # 15:00 < 16:00
+    # returns true (expired)
   end
 
   private
