@@ -4,11 +4,12 @@
       <div class="row post">
 
         <div class="author-field">
-          <%= logged_in? ? p.title : "Log in to see the author" %>
+          Author: <%= logged_in? ? p.user.name : "Log in to see the author" %>
         </div>
 
         <div class="body-field">
-          <%= p.body %>
+          <p>Title: <%= p.title %></p>
+          <p>Body: <%= p.body %></p>
         </div>
 
       </div>
