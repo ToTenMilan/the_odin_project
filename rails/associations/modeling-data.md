@@ -6,7 +6,7 @@
 
 2. You like hosting people for dinner so you want to build a dinner party invitation site. A user can create parties, invite people to a party, and accept an invitation to someone else's party.
 
-##### 1. pet-sitting
+##### 1. Pet-sitting app
 ---
 | pets | | |
 --- | --- | ---
@@ -34,3 +34,28 @@ phone_number | string
 **has_many** | **:visits**
 **has_many** | **:pets** | **through:** **:visits**
 ---
+
+##### 2. Dinner app
+---
+| users | | | |
+--- | --- | --- | ---
+id | integer
+name | string
+email | string
+**has_many** | **:hosted_parties** | **foreign_key: :host_id** | **class_name: 'Party'**
+**has_many** | **:guest_parties** | **foreign_key: :guest_id** | **class_name: 'Party'**
+
+| invitations | | | |
+--- | --- | --- | ---
+id | integer
+
+
+| parties | | |
+--- | --- | ---
+id | integer
+place | integer
+date | datetime
+host_id | integer
+guest_id | integer
+**belongs_to** | **:host** | **class_name: 'User'**
+**has_many** | **:guests** | **class_name: 'User'**
