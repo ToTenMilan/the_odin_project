@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
     redirect_to root_url and return unless @user.activated? # exercise 11.3.3.2
   end
 
@@ -55,20 +56,18 @@ class UsersController < ApplicationController
 
     # before filters
 
-    # confirms a logged in user
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "You need to login to perform this action"
-        redirect_to login_url
-      end
-    end
+    # logged_in_user has been moved to ApplicationController
+    # exercise 13.3.1.1
+    # leaving 'logged_id_user' here will override method defined in application controller and changes made there wont affect UsersController
+    # It is also code repetition
 
+    # confirms the corrent user
     def correct_user
       @user = User.find(params[:id])
       redirect_to root_url unless current_user?(@user)
     end
 
+    # confirms the admin user
     def admin_user
       redirect_to root_url unless current_user.admin?
     end

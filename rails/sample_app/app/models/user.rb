@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token # virtual (not in db) attributes used below
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -77,6 +78,10 @@ class User < ApplicationRecord
     # 2.hours.ago => max 16:00
     # 15:00 < 16:00
     # returns true (expired)
+  end
+
+  def feed
+    Micropost.where("user_id = ?", id)
   end
 
   private
