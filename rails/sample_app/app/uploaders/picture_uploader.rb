@@ -5,13 +5,13 @@ class PictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   process resize_to_limit: [400, 400]
 
-  # not finished AWS account. Need to finish it in future
+  # not finished AWS account. Turned off because of crashing production. Need to finish it in future
   # ch 13.4.4
-  if Rails.env.production?
-    storage :fog
-  else
-    storage :file
-  end
+  # if Rails.env.production?
+  #   storage :fog
+  # else
+  #   storage :file
+  # end
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
