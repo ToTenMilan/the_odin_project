@@ -1,5 +1,5 @@
-<p>Event creator: <%= @user.name if @user %></p>
-<p>Created events: </p>
+<h1>All Events</h1>
+
 <div class="container">
   <table class="table">
     <thead>
@@ -12,19 +12,13 @@
     </thead>
     <tbody>
 
-        <tr><% @user_events.each do |e| %></tr>
+        <tr><% @events.each do |e| %></tr>
           <td><%= e.name %></td>
           <td><%= e.place %></td>
           <td><%= e.date %></td>
           <td><%= e.creator.name %></td>
         <% end %>
 
-
     </tbody>
   </table>
 </div>
-
-
-
-
-

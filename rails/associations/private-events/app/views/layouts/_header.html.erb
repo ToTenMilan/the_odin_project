@@ -5,7 +5,7 @@
         <ul class="nav navbar-nav navbar-right">
 
           <% if current_user? %>
-            <li><%= link_to "Signed in as #{current_user}"%></li>
+            <li><%= link_to "Signed in as #{current_user.name}"%></li>
             <li><%= link_to "Sign out", "#" %></li>
           <% else %>
             <li><%= link_to "New user", new_user_path %></li>

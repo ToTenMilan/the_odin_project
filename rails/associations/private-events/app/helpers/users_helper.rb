@@ -5,7 +5,9 @@ module UsersHelper
   end
 
   def current_user
-    session[:user_name]
+    if (user_id = session[:id])
+      @current_user ||= User.find(user_id)
+    end
   end
 
   def clear_cookies
