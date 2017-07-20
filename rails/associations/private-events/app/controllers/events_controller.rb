@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     @user = current_user
     @event = @user.created_events.build(event_params)
     # @event.place = Faker::University.name
-    @event.date = 1.week.from_now
+    # @event.date = params[:date]
     @event.save
     flash[:success] = "Event has been succesfully saved"
     redirect_to events_path
@@ -25,6 +25,6 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:name, :description)
+      params.require(:event).permit(:name, :description, :date)
     end
 end
