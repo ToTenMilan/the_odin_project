@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def new
     # (note to me in future) refactor to use helper method
-    if session[:user_name].nil?
+    if session[:name].nil?
       @user = User.new
     else
       @user = User.find(session[:id])
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.save
-    session[:user_name] = @user.name
+    session[:name] = @user.name
     session[:id] = @user.id
     # cookies[:name] = @user.name
     # cookies[:id] = @user.id

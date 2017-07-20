@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   scope :all_upcoming_events, -> { where("date > ?", Time.now) } # scope, lets use 'all_upcoming_events' method
   scope :all_past_events, -> { where("date < ?", Time.now) } # scope, lets use 'all_past_events' method
 
+  ########## class methods from below moved to being scopes ##########
   # def self.all_upcoming_events
   #   Event.where("date > ?", Time.now)
   # end
