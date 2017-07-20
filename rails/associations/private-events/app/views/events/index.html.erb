@@ -1,6 +1,29 @@
-<h1>All Events</h1>
-
 <div class="container">
+  <h3>All upcoming Events</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Event name</th>
+        <th>Place</th>
+        <th>Event Date</th>
+        <th>Event Creator</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr><% @all_upcoming_events.each do |e| %></tr>
+        <td><%= e.name %></td>
+        <td><%= e.place %></td>
+        <td><%= e.date %></td>
+        <td><%= e.creator.name %></td>
+        <td><%= link_to "Show details", event_path(e), class: "btn btn-primary" %></td>
+      <% end %>
+
+    </tbody>
+  </table>
+
+  <h3>All past events</h3>
   <table class="table">
     <thead>
       <tr>
@@ -12,12 +35,12 @@
     </thead>
     <tbody>
 
-        <tr><% @events.each do |e| %></tr>
-          <td><%= e.name %></td>
-          <td><%= e.place %></td>
-          <td><%= e.date %></td>
-          <td><%= e.creator.name %></td>
-        <% end %>
+      <tr><% @all_past_events.each do |e| %></tr>
+        <td><%= e.name %></td>
+        <td><%= e.place %></td>
+        <td><%= e.date %></td>
+        <td><%= e.creator.name %></td>
+      <% end %>
 
     </tbody>
   </table>
