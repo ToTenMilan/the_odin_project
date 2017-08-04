@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Event name</th>
+      <th>Event Place</th>
+      <th>Event Date</th>
+      <th>Event Creator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <td><%= @event.name %></td>
+    <td><%= @event.place %></td>
+    <td><%= @event.date %></td>
+    <td><%= @event.creator.name %></td>
+  </tbody>
+</table>
+<h3>Event description</h3>
+<p><%= @event.description %></p>
+
