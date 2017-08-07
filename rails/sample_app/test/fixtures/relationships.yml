@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# removed because of violating the uniqueness constraint
+# one:
+#   follower_id: 1
+#   followed_id: 1
+
+# two:
+#   follower_id: 1
+#   followed_id: 1
