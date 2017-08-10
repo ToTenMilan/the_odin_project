@@ -53,4 +53,13 @@ class FollowingTest < ActionDispatch::IntegrationTest
       delete relationship_path(relationship), xhr: true
     end
   end
+
+  test "feed on home page" do
+    get root_path
+    @user.feed.paginate(page: 1).each do |micropost|
+      assert_match CGI.escapeHTML(micropost.content), response.body # ex. 14.3.3.2
+      # check this SO post for reference on why to escapeHTML
+      # https://stackoverflow.com/questions/37871830/rails-tutorial-reason-for-cgi-escapehtml-in-chapter-12-exercise-2
+    end
+  end
 end
