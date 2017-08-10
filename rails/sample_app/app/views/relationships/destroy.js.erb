@@ -1,0 +1,3 @@
+// in *.js.erb files, ruby is preprocessed first (from right to left)
+$("#follow_form").html("<%= j render 'users/follow' %>"); // `j` is an alias for `escape_javascript`
+$("#followers").html("<%= @user.followers.count %>");

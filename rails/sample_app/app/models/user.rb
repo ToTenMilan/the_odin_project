@@ -85,7 +85,26 @@ class User < ApplicationRecord
   end
 
   def feed
-    Micropost.where("user_id = ?", id)
+    # `User.first.following_ids` => shorthand of `User.first.following.map(&:id)`
+
+    # 1ST VERSION
+    # good when only one record needs to be pulled
+    # Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id) # This is good when we are pulling only one record
+
+    # 2ND VERSION
+    # good when more than record needs to be pulled
+    # Micropost.where("user_id IN (:following_ids) OR user_id = :user_id", following_ids: following_ids, user_id: id)
+
+    # 3RD VERSION
+    # best for scaling horizontally
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id) # more efficent than the query below
+
+    # For details refer to section 14.3.3 Subselects of the railstutorial book
+
+    # ex 14.3.2.1 Posts from self test will fail
+    # ex 14.3.2.2 Post from followed user will fail
+    # Micropost.all # exercise 14.3.2.3 make third test block fail
   end
 
   def follow(other_user)
