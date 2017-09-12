@@ -1,0 +1,37 @@
+<h1>All Flights:</h1>
+<ul>
+  <% @flights.each do |f| %>
+    <li>Flight Number: <%= f.id %></li>
+    <li>Flight from: <%= f.departure_airport.code %></li>
+    <li>Flight to: <%= f.destination_airport.code %></li>
+    <li>Start date: <%= f.start %></li>
+    <li>Flight duration: <%= Time.at(f.duration).utc.strftime("%H:%M:%S") %></li>
+    <hr>
+  <% end %>
+
+</ul>
+
+<h2>Search flight</h2>
+<%= form_for(:flight, method: :get) do %>
+  <%= select_tag(:flight_id, options_for_select(@airport_options)) %>
+  <%= submit_tag "Search flight" %>
+<% end %>
+
+
+
+
+<!-- as commented out -->
+<% if false %>
+
+    <%= form_for :flight do |f| %>
+      <select name="airport_id">
+        <% @airports.each do |a| %>
+          <option value="<%= a.id %>"><%= a.code %></option>
+        <% end %>
+      </select>
+
+
+      <%= f.select(:airport_id, @airport_options) %>
+    <% end %>
+
+<% end %>
