@@ -1,3 +1,18 @@
 /* "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables" */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+thead {
+  font-weight: 900;
+}
+
+.page-header {
+  font-weight: 900;
+}
+
+/*logo*/
+#logo {
+  font-weight: 900;
+  font-size: 72 !important; /* is not overriding bootstrap, why? */
+}
+

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MilanFlightBooker</title>
+    <title>SkyScanna</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,9 +10,15 @@
 
   <body>
     <div class="jumbotron">
-      <h1>Milan-flight-booker!</h1>
+      <div class="container-fluid">
+        <h1 id="logo">SkyScanna</h1>
+        <div class="page-header">
+          <h3>Pick your flight <small>fast and cheap</small></h3>
+        </div>
+      </div>
     </div>
     <%= yield %>
     <p><%= debug(params) if Rails.env.development? %></p>
+
   </body>
 </html>

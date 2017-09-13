@@ -1,27 +1,44 @@
-<h2>Search flight</h2>
-<%= form_for(:flight, method: :get) do |f| %>
-  <%= f.label :from %>
-  <%= f.select(:from_airport_id, options_for_select(@airport_options)) %>
-  <%= f.label :to %>
-  <%= f.select(:to_airport_id, options_for_select(@airport_options)) %>
-  <%= f.label :passengers %>
-  <%= f.select(:passengers, [1,2,3,4]) %>
-  <%= f.label :date %>
-  <%= f.select("flight_start", options_from_collection_for_select(@flights, 'start', :flight_date_formatted)) %>
-  <%= f.submit "Search flight" %>
-<% end %>
-
-<h1>All Flights:</h1>
-<ul>
-  <% @flights.each do |f| %>
-    <li>Flight Number: <%= f.id %></li>
-    <li>Flight from: <%= f.departure_airport.code %></li>
-    <li>Flight to: <%= f.destination_airport.code %></li>
-    <li>Start date: <%= f.start %></li>
-    <li>Flight duration: <%= Time.at(f.duration).utc.strftime("%H:%M:%S") %></li>
-    <hr>
+<fieldset>
+  <%= form_for(:flight, method: :get, :html => { :class => "form-horizontal" }) do |f| %>
+    <h3>Search Flight</h3>
+    <%= f.label :from %>
+    <%= f.select(:from_airport_id, options_for_select(@airport_options), class: 'form-control') %>
+    <%= f.label :to %>
+    <%= f.select(:to_airport_id, options_for_select(@airport_options), class: 'form-control') %>
+    <%= f.label :passengers %>
+    <%= f.select(:passengers, [1,2,3,4], class: 'form-control') %>
+    <%= f.label :date %>
+    <%= f.select(:start, options_from_collection_for_select(@flights_all, :start, :flight_date_formatted), class: 'form-control') %>
+    <%= f.submit "Search flight", class: 'btn btn-primary' %>
   <% end %>
-</ul>
+</fieldset>
+
+<fieldset>
+  <h3>Selected Flights:</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Flight number</td>
+        <td>Flight from</td>
+        <td>Flight to</td>
+        <td>Flight start</td>
+        <td>Flight duration</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @flights.each do |f| %>
+        <tr>
+          <td>Flight Number: <%= f.id %></td>
+          <td>Flight from: <%= f.departure_airport.code %></td>
+          <td>Flight to: <%= f.destination_airport.code %></td>
+          <td>Start date: <%= f.start %></td>
+          <td>Flight duration: <%= Time.at(f.duration).utc.strftime("%H:%M:%S") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</fieldset>
+
 
 
 
