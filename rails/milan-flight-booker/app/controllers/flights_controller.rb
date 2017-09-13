@@ -2,22 +2,13 @@ class FlightsController < ApplicationController
   def index
     @airports = Airport.all
     @airport_options = Airport.all.map { |a| [ a.code, a.id ] }
-    p "@@@@@@@@@@@@@@@@22222 params flight @@@@@@@@@@@@@@@@@@"
-    p params[:flight]
-    p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
-    if params[:flight].nil?
-      @flights = Flight.all
+    @flights = if params[:flight].nil?
+      Flight.all
     else
-      # @flights = Flight.where("destination_airport_id LIKE ?", "%#{params[:flight][:to_airport_id]}%")
-      @flights = Flight.where(destination_airport_id: params[:flight][:to_airport_id])
+      start_date_param = params[:flight][:flight_start].in_time_zone('UTC')
+      Flight.where(destination_airport_id: params[:flight][:to_airport_id], departure_airport_id: params[:flight][:from_airport_id], start: (start_date_param)..(start_date_param + 1.day))
     end
-
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!! fights"
-    p @flights
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-
-
 
     # @flights = if params.nil?
     #   Flight.all
@@ -27,9 +18,6 @@ class FlightsController < ApplicationController
     #   #             params[:flight][:to_airport_id] &&
     #   #             params[:flight][:passengers] &&
     #   #             params[:flight][:flight_start]
-    #   # p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2 params @@@@@@@@@@@@@@@@@@@@@@@@@"
-    #   # p params[:controller][:flights]
-    #   # p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
     #   Airport.where('id LIKE ?', "%#{params[:flights][:from_airport_id])}%")
     # end
