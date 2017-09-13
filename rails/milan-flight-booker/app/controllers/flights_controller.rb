@@ -4,6 +4,8 @@ class FlightsController < ApplicationController
     @airport_options = Airport.all.map { |a| [ a.code, a.id ] }
     @flights = Flight.all
 
+
+
     # @flights = if params[:destination_airport]
     #   Flight.where('destination_airport.code LIKE ?', "%#{params[:destination_airport]}%")
     # else
