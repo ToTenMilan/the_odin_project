@@ -18,28 +18,33 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <td>Book flight</td>
         <td>Flight number</td>
         <td>Flight from</td>
         <td>Flight to</td>
         <td>Flight start</td>
         <td>Flight duration</td>
+        <td>Passengers</td>
       </tr>
     </thead>
     <tbody>
-      <% @flights.each do |f| %>
-        <tr>
-          <td>Flight Number: <%= f.id %></td>
-          <td>Flight from: <%= f.departure_airport.code %></td>
-          <td>Flight to: <%= f.destination_airport.code %></td>
-          <td>Start date: <%= f.start %></td>
-          <td>Flight duration: <%= Time.at(f.duration).utc.strftime("%H:%M:%S") %></td>
-        </tr>
+      <%= form_for @booking, url: booking_path do |b| %>
+        <% @flights.each do |f| %>
+          <tr>
+            <td><%= radio_button_tag(:pick, 'Pick') %></td>
+            <td><%= f.id %></td>
+            <td><%= f.departure_airport.code %></td>
+            <td><%= f.destination_airport.code %></td>
+            <td><%= f.start %></td>
+            <td><%= Time.at(f.duration).utc.strftime("%H:%M:%S") %></td>
+            <td><%= select_tag(:passengers, options_for_select([1,2,3,4])) %></td>
+          </tr>
+        <% end %>
+        <%= b.submit "Book flight", class: "btn btn-primary" %>
       <% end %>
     </tbody>
   </table>
 </fieldset>
-
-
 
 
 
