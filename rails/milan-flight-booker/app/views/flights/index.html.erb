@@ -13,6 +13,7 @@
 
 <h2>Search flight</h2>
 
+
 <%= form_for(:flight, method: :get) do |f| %>
   <%= f.label :from %>
   <%= f.select(:from_airport_id, options_for_select(@airport_options)) %>
@@ -21,8 +22,7 @@
   <%= f.label :passengers %>
   <%= f.select(:passengers, [1,2,3,4]) %>
   <%= f.label :date %>
-
-  <%= f.select("flight_date", options_from_collection_for_select(@flights, 'start', :flight_date_formatted)) %>
+  <%= f.select("flight_start", options_from_collection_for_select(@flights, 'start', :flight_date_formatted)) %>
   <%= f.submit "Search flight" %>
 <% end %>
 
