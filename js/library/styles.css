@@ -1,0 +1,13 @@
+thead {
+	font-weight: 600;
+}
+
+
+td {
+	padding: 8;
+	border: 1px solid black;
+}
+
+h1 {
+	color: red;
+}
